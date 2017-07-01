@@ -27,7 +27,11 @@
         </activity>
 
         <activity android:name=".ui.UnderAttackActivity" />
-        <activity android:name=".ui.MapActivity" />
+        <activity android:name=".ui.MapActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity" />
+        </activity>
 
         <service android:name=".notifications.AppFirebaseMessagingService">
             <intent-filter>

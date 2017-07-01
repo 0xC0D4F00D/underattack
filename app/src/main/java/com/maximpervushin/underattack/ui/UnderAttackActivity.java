@@ -50,4 +50,9 @@ public class UnderAttackActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        // Disable back action on this activity.
+    }
 }
