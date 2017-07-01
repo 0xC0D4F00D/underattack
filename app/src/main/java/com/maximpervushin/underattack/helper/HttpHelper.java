@@ -38,6 +38,36 @@ public class HttpHelper {
         super();
     }
 
+    public static void userUpdatePushToken(final Context context, final String pushToken) {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                OkHttpClient client = new OkHttpClient();
+
+                String clientId = ClientIdHelper.getClientId(context);
+                String jsonString = "{\n" +
+                        " \"userId\": \"" + clientId + "\",\n" +
+                        " \"token\": \"" + pushToken + "\",\n" +
+                        " \"platform\": \"android\"\n" +
+                        "}";
+                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody body = RequestBody.create(JSON, jsonString);
+                String url = "http://" + API_ROOT + ":8085/api/v1/user/update-push-token";
+                Request request = new Request.Builder()
+                        .url(url)
+                        .post(body)
+                        .build();
+
+                try {
+                    Response response = client.newCall(request).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public static void userUpdateLocation(final Context context, final Location location) {
         AsyncTask.execute(new Runnable() {
             @Override

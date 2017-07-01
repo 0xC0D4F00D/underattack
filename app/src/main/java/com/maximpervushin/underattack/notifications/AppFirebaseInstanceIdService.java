@@ -8,9 +8,7 @@ import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.maximpervushin.underattack.helper.HttpHelper;
 
 
 public class AppFirebaseInstanceIdService extends FirebaseInstanceIdService {
@@ -20,20 +18,7 @@ public class AppFirebaseInstanceIdService extends FirebaseInstanceIdService {
     @Override
     public void onTokenRefresh() {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("deviceToken", refreshedToken);
-        parameters.put("deviceType", "Android");
         Log.d(TAG, refreshedToken);
-//        parameters.put("appVersion", VersionHelper.getVersion(this));
-//        HttpHelper.post(this, "http://promurom.ru/api/registration/", parameters, new Callback<Result<String>>() {
-//            @Override
-//            public void onResponse(Result<String> response) {
-//                if (response.success) {
-//                    Log.d(TAG, "SUCCESS");
-//                } else {
-//                    Log.d(TAG, "FAILURE");
-//                }
-//            }
-//        });
+        HttpHelper.userUpdatePushToken(this, refreshedToken);
     }
 }

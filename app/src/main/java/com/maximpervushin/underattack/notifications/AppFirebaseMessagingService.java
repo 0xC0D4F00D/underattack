@@ -29,12 +29,8 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
 //        RemoteNotificationItem item = null;
         try {
-            String title = remoteMessage.getData().get("title");
-            String body = remoteMessage.getData().get("body");
             String itemId = remoteMessage.getData().get("itemId");
-            String itemType = remoteMessage.getData().get("itemType");
-            Log.d(TAG, title);
-            Log.d(TAG, body);
+            Log.d(TAG, itemId);
 
 //            if (title != null) {
 //                showNotification(title, body != null ? body : "");
