@@ -55,7 +55,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void run() {
                 if (googleMap != null && alarmsListResponse != null) {
                     for (LatLng latLng : alarmsListResponse.alarms) {
-                        googleMap.addMarker(new MarkerOptions().position(latLng).title("Beat here"));
+                        googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.under_attack)));
                     }
                     Resources r = getResources();
                     int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, r.getDisplayMetrics());
