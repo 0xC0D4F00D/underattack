@@ -32,7 +32,7 @@ import okhttp3.Response;
 
 public class HttpHelper {
 
-    private static String API_ROOT = "172.21.142.85";
+    private static String API_ROOT = "192.168.0.150";
 
     private HttpHelper() {
         super();

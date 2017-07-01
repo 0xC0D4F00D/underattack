@@ -19,14 +19,20 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDCeXGcRfcUAYWHQ3QTF1rNoufirlCPDx8" />
 
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.UnderAttackActivity" />
+        <activity
+            android:name=".ui.UnderAttackActivity"
+            android:theme="@style/AppTheme.NoActionBar.Fullscreen"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.MapActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

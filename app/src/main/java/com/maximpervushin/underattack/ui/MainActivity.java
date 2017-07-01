@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 Location lastKnownLocation =
                         locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                HttpHelper.alarmTrigger(MainActivity.this, lastKnownLocation);
+                if (lastKnownLocation != null) {
+                    HttpHelper.alarmTrigger(MainActivity.this, lastKnownLocation);
+                }
 
                 Intent intent = new Intent(MainActivity.this, UnderAttackActivity.class);
                 startActivity(intent);
