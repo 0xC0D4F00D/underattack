@@ -54,6 +54,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void run() {
                 if (googleMap != null && alarmsListResponse != null) {
+                    googleMap.clear();
                     for (LatLng latLng : alarmsListResponse.alarms) {
                         googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.under_attack)));
                     }
