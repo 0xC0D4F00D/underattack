@@ -204,7 +204,6 @@ public class HttpHelper {
 
                 try {
                     Response response = client.newCall(request).execute();
-                    Log.d("CANCEL", response.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
