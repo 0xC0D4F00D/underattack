@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context="com.maximpervushin.underattack.ui.MainActivity">
+
+    <Button
+        android:id="@+id/underAttackButton"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:background="@drawable/circle_button"
+        android:elevation="24dp"
+        android:text="@string/under_attack"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp" />
+
+</LinearLayout>

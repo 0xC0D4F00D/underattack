@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Наших бьют!</string>
+    <string name="under_attack">Наших бьют!!!</string>
+    <string name="cancel_alarm">Отмена тревоги</string>
+</resources>

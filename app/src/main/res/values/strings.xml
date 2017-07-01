@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Under attack!</string>
+    <string name="under_attack">Under Attack!!!</string>
+    <string name="cancel_alarm">Cancel Alarm</string>
+</resources>
