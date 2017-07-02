@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class UnderAttackActivity extends AppCompatActivity {
         startService(locationServiceIntent);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.alert); //create(this, R.raw.alert);
+//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
@@ -69,6 +71,7 @@ public class UnderAttackActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        mediaPlayer.release();
         super.onDestroy();
     }
 }

@@ -9,9 +9,9 @@ import java.util.UUID;
  * Created by maximpervushin on 01/07/2017.
  */
 
-public class ClientIdHelper {
+public class Storage {
 
-    private ClientIdHelper() {
+    private Storage() {
         super();
     }
 
@@ -25,5 +25,17 @@ public class ClientIdHelper {
             editor.commit();
         }
         return clientId;
+    }
+
+    public static void setGcmToken(Context context, String token) {
+        SharedPreferences settings = context.getSharedPreferences("DrwPrefs", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("gcmToken", token);
+        editor.commit();
+    }
+
+    public static String getGcmToken(Context context) {
+        SharedPreferences settings = context.getSharedPreferences("DrwPrefs", 0);
+        return settings.getString("gcmToken", null);
     }
 }

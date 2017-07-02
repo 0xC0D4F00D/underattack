@@ -3,7 +3,6 @@ package com.maximpervushin.underattack.helper;
 import android.content.Context;
 import android.location.Location;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -29,20 +28,26 @@ import okhttp3.Response;
 
 public class HttpHelper {
 
-    private static String API_ROOT = "192.168.0.150";
+//    private static String API_ROOT = "http://darwin.mayfleet.com:80/api/v1";
+    private static String API_ROOT = "http://192.168.0.150:8085/api/v1";
 
     private HttpHelper() {
         super();
     }
 
-    public static void userUpdatePushToken(final Context context, final String pushToken) {
+    public static void userUpdatePushToken(final Context context) {
+        final String pushToken = Storage.getGcmToken(context);
+        if (pushToken == null) {
+            return;
+        }
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
 
                 OkHttpClient client = new OkHttpClient();
 
-                String clientId = ClientIdHelper.getClientId(context);
+                String clientId = Storage.getClientId(context);
                 String jsonString = "{\n" +
                         " \"userId\": \"" + clientId + "\",\n" +
                         " \"token\": \"" + pushToken + "\",\n" +
@@ -50,7 +55,7 @@ public class HttpHelper {
                         "}";
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody body = RequestBody.create(JSON, jsonString);
-                String url = "http://" + API_ROOT + ":8085/api/v1/user/update-push-token";
+                String url = API_ROOT + "/user/update-push-token";
                 Request request = new Request.Builder()
                         .url(url)
                         .post(body)
@@ -72,7 +77,7 @@ public class HttpHelper {
 
                 OkHttpClient client = new OkHttpClient();
 
-                String clientId = ClientIdHelper.getClientId(context);
+                String clientId = Storage.getClientId(context);
                 String jsonString = "{\n" +
                         " \"userId\": \"" + clientId + "\",\n" +
                         " \"lat\": " + location.getLatitude() + ",\n" +
@@ -81,7 +86,7 @@ public class HttpHelper {
                         "}";
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody body = RequestBody.create(JSON, jsonString);
-                String url = "http://" + API_ROOT + ":8085/api/v1/user/update-location";
+                String url = API_ROOT + "/user/update-location";
                 Request request = new Request.Builder()
                         .url(url)
                         .post(body)
@@ -98,9 +103,9 @@ public class HttpHelper {
 
     public static AlarmsListResponse alarmListV(final Context context) {
         OkHttpClient client = new OkHttpClient();
-        String clientId = ClientIdHelper.getClientId(context);
+        String clientId = Storage.getClientId(context);
         Request request = new Request.Builder()
-                .url("http://" + API_ROOT + ":8085/api/v1/alarm/list?userId=" + clientId)
+                .url(API_ROOT + "/alarm/list?userId=" + clientId)
                 .build();
 
         Response response = null;
@@ -153,7 +158,7 @@ public class HttpHelper {
 
                 OkHttpClient client = new OkHttpClient();
 
-                String clientId = ClientIdHelper.getClientId(context);
+                String clientId = Storage.getClientId(context);
                 String jsonString = "{\n" +
                         " \"userId\": \"" + clientId + "\",\n" +
                         " \"lat\": " + location.getLatitude() + ",\n" +
@@ -162,7 +167,7 @@ public class HttpHelper {
                         "}";
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody body = RequestBody.create(JSON, jsonString);
-                String url = "http://" + API_ROOT + ":8085/api/v1/alarm/trigger";
+                String url = API_ROOT + "/alarm/trigger";
                 Request request = new Request.Builder()
                         .url(url)
                         .post(body)
@@ -184,7 +189,7 @@ public class HttpHelper {
 
                 OkHttpClient client = new OkHttpClient();
 
-                String clientId = ClientIdHelper.getClientId(context);
+                String clientId = Storage.getClientId(context);
                 String jsonString = "{\n" +
                         " \"userId\": \"" + clientId + "\"\n" +
 //                        " \"lat\": " + location.getLatitude() + ",\n" +
@@ -193,7 +198,7 @@ public class HttpHelper {
                         "}";
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody body = RequestBody.create(JSON, jsonString);
-                String url = "http://" + API_ROOT + ":8085/api/v1/alarm/cancel";
+                String url = API_ROOT + "/alarm/cancel";
                 Request request = new Request.Builder()
                         .url(url)
                         .post(body)
